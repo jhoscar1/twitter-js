@@ -22,11 +22,15 @@ router.get('/tweets/:id', function(req, res) {
     res.render('index', { tweets: tweets });
 })
 
-router.post('/tweets', function(req, res) {
-    console.log('here');
-    console.log(req.body);
-    tweetBank.add(req.body.name, req.body.text);
-    res.redirect('/');
-});
 
-module.exports = router;
+
+module.exports = function (io) {  
+    router.post('/tweets', function(req, res) {
+        var newTweet = tweetBank.add(req.body.name, req.body.text);
+        console.log(newTweet);
+        io.sockets.emit('newTweet', newTweet);
+        res.redirect('/');
+    });
+
+    return router;
+};

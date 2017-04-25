@@ -80,7 +80,37 @@
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      
+      // Load the socket.io library above, then connect to the server.
+      // Because the socket.io server is being run on the same server as your 
+      // Express instance, you can connect() without any arguments.
+      var socket = io.connect();
+      socket.on('connect', function(){
+        console.log('connected to server via WebSockets!');
+      });
+      // When 'new_tweet' events are fired, do something with the packaged tweet
+      socket.on('newTweet', function (tweet) { 
+        console.log(tweet);
+        // some logic to add the new tweet to the DOM…
+        var liEle = document.createElement('li');
+        liEle.className = 'tweet';
+        // liEle.innerHTML = '<div>
+        //     <h4><a href="/users/{{ tweet.name }}">{{tweet.name}}</a></h4>
+        //     <p><a href="/tweets/{{ tweet.id }}">{{tweet.content}}</a></p>
+        //   </div>'
+        liEle.innerHTML = '<p>This works now</p>';
+        // var imgEle = document.createElement('img');
+        // imgEle.className = 'profile-picture';
+        // var divEle = document.createElement('div');
+        // var hEle = document.createElement('h4');
+        // var pEle = document.createElement('p');
+        // divEle.appendChild(hEle);
+        // divEle.appendChild(pEle);
+        // liEle.appendChild(divEle);
+
+        console.log(liEle);
+
+        document.getElementsByClassName('col-md-9')[0].appendChild(liEle);
+      });       
     </script>
   </body>
 </html>
