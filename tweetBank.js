@@ -41,9 +41,3 @@ for (let i = 0; i < 10; i++) {
 }
 
 module.exports.add('Jaden Smith', 'How can mirrors be real if our eyes are not real');
-
-// console.log(module.exports.find( function(tweet) {
-//     return tweet.name === 'Jaden Smith';
-// }));
-
-//console.log(data);

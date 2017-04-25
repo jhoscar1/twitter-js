@@ -17,8 +17,8 @@ var server = app.listen(3000, function() {
 
 var io = socketio.listen(server);
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false })); // for HTML form submits because HTML forms always use urlencoded requests
+app.use(bodyParser.json()); // for AJAX requests
 app.use('/', routes(io));
 
 app.use(volleyball);
