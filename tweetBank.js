@@ -1,8 +1,10 @@
 const _ = require('lodash');
 var data = [];
+var id = 0;
 
 function add (name, content) {
-  data.push({ name: name, content: content });
+    data.push({ id: id, name: name, content: content });
+    id++;
 }
 
 function list () {
@@ -37,7 +39,7 @@ for (let i = 0; i < 10; i++) {
   module.exports.add( getFakeName(), getFakeTweet() );
 }
 
-// module.exports.add('Jaden Smith', 'How can mirrors be real if our eyes are not real');
+module.exports.add('Jaden Smith', 'How can mirrors be real if our eyes are not real');
 
 // console.log(module.exports.find( function(tweet) {
 //     return tweet.name === 'Jaden Smith';
