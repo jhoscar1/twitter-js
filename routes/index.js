@@ -16,13 +16,10 @@ router.get('/users/:name', function(req, res) {
 
 router.get('/tweets/:id', function(req, res) {
     var id = req.params.id;
-    console.log(tweetBank.list());
     var tweets = tweetBank.find({ id: parseInt(id, 10) });
     console.log(tweets);
     res.render('index', { tweets: tweets });
-})
-
-
+});
 
 module.exports = function (io) {  
     router.post('/tweets', function(req, res) {
